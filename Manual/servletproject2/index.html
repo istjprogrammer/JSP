@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDEX</title>
+    
+</head>
+<body>
+   <h1>요청 방식</h1>
+   <hr/>
+   <h4>Get 방식</h4>
+   <ul>
+		<li>직접 URL을 작성해서 요청하는 방식(URL 전송방식)</li>
+		<li><a href=http://localhost:9999/servlet2/test1>하이퍼링크 요청</a></li>
+		<li>
+			<form method="get" action = "/servlet2/test1">
+				<input type="submit" value="폼 전송" />
+			</form>
+		</li>
+	</ul>
+	
+	<br><br>
+	
+	<h3>POST 방식</h3>
+	<form method = "Post" action = "/servlet2/test1">
+		<input type="submit" value="폼 전송" />
+	</form>
+</body>
+</html>
