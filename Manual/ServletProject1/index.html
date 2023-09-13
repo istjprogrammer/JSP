@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDEX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .content img {
+            width: calc(50% - 10px); /* 2개의 이미지가 한 줄에 보이도록 설정 */
+            height: auto;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>INDEX</h1>
+    </header>
+    <nav>
+        <a href="#소개">소개</a>
+        <a href="#역사">역사</a>
+        <a href="#전화번호">전화번호</a>
+    </nav>
+    <div class="container">
+        <h2 id="소개">INDEX입니다.</h2>
+        <!-- 소개 내용을 여기에 추가 -->
+
+        <h2 id="역사">역사입니다.</h2>
+        <!-- 역사 내용을 여기에 추가 -->
+
+        <h2 id="전화번호">전화번호입니다.</h2>
+        <!-- 전화번호 내용을 여기에 추가 -->
+
+        <h2>컨텐츠</h2>
+        <div class="content">
+            <img src="이미지1.jpg" alt="이미지 1">
+            <img src="이미지2.jpg" alt="이미지 2">
+            <img src="이미지3.jpg" alt="이미지 3">
+            <img src="이미지4.jpg" alt="이미지 4">
+        </div>
+    </div>
+</body>
+</html>
