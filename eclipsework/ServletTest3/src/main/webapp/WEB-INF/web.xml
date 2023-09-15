@@ -76,7 +76,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HomeWork</servlet-name>
-		<url-pattern>/homework.action</url-pattern>
+		<url-pattern>/homework</url-pattern>
 	</servlet-mapping>
 
 </web-app>
