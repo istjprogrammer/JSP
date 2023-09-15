@@ -163,7 +163,7 @@
 			
 									
 									
-      <Context docBase="ServletTest1" path="/ServletTest1" reloadable="true" source="org.eclipse.jst.jee.server:ServletTest1"/></Host>
+      <Context docBase="ServletTest3" path="/ServletTest3" reloadable="true" source="org.eclipse.jst.jee.server:ServletTest3"/></Host>
     </Engine>
   </Service>
 </Server>
