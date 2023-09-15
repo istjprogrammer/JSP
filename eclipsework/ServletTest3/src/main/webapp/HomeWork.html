@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<h1>과제</h1>
+	<h2>회원 가입 신청</h2>
+	<form method="post" action="/ServletTest3/homework.action">
+		<table style="border:1px solid black">
+			<tr>
+				<td>아이디 : </td>
+				<td><input type="text" name="id" /></td>
+			</tr>
+			<tr>
+				<td>패스워드 : </td>
+				<td><input type="password" name="pw" /></td>
+			</tr>
+			<tr>
+				<td>성별 : </td>
+				<td>
+					<input type="radio" name="gender" value="남성" />남성
+					&nbsp;&nbsp;
+					<input type="radio" name="gender" value="여성" />여성
+				</td>
+			</tr>
+			<tr>
+				<td>취미 : </td>
+				<td>
+					<input type="checkbox" name="hobby" value="등산" />등산<br />
+					<input type="checkbox" name="hobby" value="낚시" />낚시<br />
+					<input type="checkbox" name="hobby" value="자전거" />자전거<br />
+					<input type="checkbox" name="hobby" value="독서" />독서<br />
+				</td>
+			</tr>
+			<tr>
+				<td>직업 : </td>
+				<td>
+					<select name="job">
+						<option value="회사원">회사원</option>
+						<option value="농업">농업</option>
+						<option value="어업">어업</option>
+						<option value="광업">광업</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>하고 싶은 말 : </td>
+				<td>
+					<textarea rows="5" cols="60" name="say"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="가입 신청" />&nbsp;&nbsp;
+					<input type="reset" value="취소" />
+				</td>
+			</tr>
+		</table>
+		<input type="checkbox" name="cook"> 쿠키 여부
+	</form>
+</body>
+
+</html>
