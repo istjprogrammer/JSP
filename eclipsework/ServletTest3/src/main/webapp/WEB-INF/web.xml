@@ -78,5 +78,14 @@
 		<servlet-name>HomeWork</servlet-name>
 		<url-pattern>/homework</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>session</servlet-name>
+		<servlet-class>persistance.ServletSession</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>session</servlet-name>
+		<url-pattern>/session.action</url-pattern>
+	</servlet-mapping>
 
 </web-app>
