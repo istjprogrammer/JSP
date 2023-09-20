@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>validCheck.html</title>
+
+	<script>
+		function isEmpty(obj, msg) {
+			if (obj.value == "" || obj.value == null) {
+				console.log(obj);
+				alert(msg + "를 입력해 주세요.")
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+
+		function fnChecked(obj) {
+			//if (!isEmpty(obj.irum, "이름")) {
+				//return false;
+			//}
+			
+			if(!isEmpty(obj.id, "아이디")){
+				return false;
+			}
+			
+			return true;
+		}		
+	</script>
+</head>
+
+<body>
+	<form action="validCheck.jsp" method="post" name="f1" onSubmit="return fnChecked(this)">
+		이름 : <input type="text" name="irum" required/><br><br>
+		아이디 : <input type="text" name="id" /><br><br>
+		암호 : <input type="password" name="pw1" required/><br><br>
+		암호확인 : <input type="password" name="pw2" /><br><br>
+		카드번호 : <input type="text" name="cardNum" /><br><br>
+		주민번호 : <input type="text" name="ssn1" size="6" />
+		- <input type="text" name="ssn2" size="7" />
+		<br><br>
+		<input type="submit" value="전송" />
+	</form>
+</body>
+
+</html>

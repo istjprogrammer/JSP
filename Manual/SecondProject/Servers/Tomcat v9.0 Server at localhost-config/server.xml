@@ -167,7 +167,7 @@
 			
 
 									
-      <Context docBase="DirectiveApp" path="/DirectiveApp" reloadable="true" source="org.eclipse.jst.jee.server:DirectiveApp"/><Context docBase="ImplicitObjectApp" path="/ImplicitObjectApp" reloadable="true" source="org.eclipse.jst.jee.server:ImplicitObjectApp"/></Host>
+      <Context docBase="DirectiveApp" path="/DirectiveApp" reloadable="true" source="org.eclipse.jst.jee.server:DirectiveApp"/><Context docBase="ImplicitObjectApp" path="/ImplicitObjectApp" reloadable="true" source="org.eclipse.jst.jee.server:ImplicitObjectApp"/><Context docBase="ActionTagApp" path="/ActionTagApp" reloadable="true" source="org.eclipse.jst.jee.server:ActionTagApp"/></Host>
     </Engine>
   </Service>
 </Server>
