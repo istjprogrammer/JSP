@@ -10,6 +10,7 @@
 	<jsp:useBean id="req" class="com.example.requestBean" scope="request"/>
 	
 	<jsp:setProperty property="header" name="req" param="header"/>
+	<!-- 만약 param을 생략하면 property의 이름을 따라간다. -->
 	<jsp:setProperty property="footer" name="req" param="footer"/>
 	
 	<jsp:include page="inc/header.jsp"></jsp:include>
