@@ -1,5 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
-<%@ page import="java.sql.*" %>
+<%@ page contentType="text/html;charset=euc-kr" %>
+
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="java.sql.*" %>%>
 <html>
 <head><title>JSPBoard</title>
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -12,6 +16,10 @@
 	Connection con = null;
 	Statement stmt = null;
 	ResultSet rs = null;
+	Context ctx = new InitialContext();
+	DataSource ds = 
+			(DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
+
 	
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String id = "scott";
@@ -26,8 +34,7 @@
 	String ip = "";
 	int count = 0;
 	try{
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		con = DriverManager.getConnection(url, id, pw);
+		con = ds.getConnection();
 		
 		String sql = "select * from tblboard where b_num=" + b_num;
 		stmt = con.createStatement();
@@ -48,14 +55,9 @@
 		System.out.println("List.jsp: " + e);
 	}
 	finally{
-	if(rs != null)
-		rs.close();
-	
-	if(stmt != null)
-		stmt.close();
-	
-	if(con != null)
-		con.close();
+		if(rs != null)	rs.close();
+		if(stmt != null) stmt.close();
+		if(con != null)	con.close();
 	}
 	
 %>

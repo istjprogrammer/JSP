@@ -159,15 +159,17 @@
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
-			
-			
 									
-			
-
-			
-
-									
-      <Context docBase="DBApp" path="/DBApp" reloadable="true" source="org.eclipse.jst.jee.server:DBApp"/></Host>
+      <Context docBase="DBApp" path="/DBApp" reloadable="true" 
+      source="org.eclipse.jst.jee.server:DBApp">
+      
+      <Resource name="jdbc/myoracle" auth="Container"
+              type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
+              url="jdbc:oracle:thin:@localhost:1521:xe"
+              username="scott" password="1111" maxTotal="20" maxIdle="10"
+              maxWaitMillis="-1"/>
+              
+      </Context></Host>
     </Engine>
   </Service>
 </Server>

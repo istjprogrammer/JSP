@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <%@ page import="java.sql.*"%>
+<%@ page import="dbcp.DBConnectionMgr" %>
 
 <html>
 <head><title>JSPBoard</title>
@@ -24,10 +25,11 @@
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
 
+	
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String id = "scott";
 	String pw = "1111";
-
+	
 	try {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		con = DriverManager.getConnection(url, id, pw);
@@ -43,7 +45,7 @@
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, b_num);
 		stmt.executeUpdate();
-	
+		
 		response.sendRedirect("List.jsp");
 		}
 		else{

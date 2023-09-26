@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <%@ page import="java.sql.*"%>
+<%@ page import="dbcp.DBConnectionMgr" %>
 
 <html>
 <head><title>JSPBoard</title>
@@ -21,29 +22,25 @@
 	String b_num = request.getParameter("b_num");
 	String pass = request.getParameter("pass");
 	Connection con = null;
-	PreparedStatement stmt = null;
+	Statement stmt = null;
 	ResultSet rs = null;
-
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String id = "scott";
-	String pw = "1111";
+	DBConnectionMgr pool = null;
 
 	try {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		con = DriverManager.getConnection(url, id, pw);
+		pool = DBConnectionMgr.getInstance();
+		con = pool.getConnection();
 		
 		String sql = "select b_pass from tblboard where b_num=?";
 		stmt = con.prepareStatement(sql);
-		stmt.setString(1, b_num);
-		rs = stmt.executeQuery();
+		
 		rs.next();
 		
 		if(pass.equals(rs.getString("b_pass"))){
 		sql = "delete from tblboard where b_num=?";
 		stmt = con.prepareStatement(sql);
-		stmt.setString(1, b_num);
-		stmt.executeUpdate();
-	
+		rs = stmt.executeQuery(sql);
+		
 		response.sendRedirect("List.jsp");
 		}
 		else{
@@ -57,12 +54,7 @@
 	} catch (Exception e) {
 		System.out.println("Delete.jsp: " + e);
 	} finally {
-		if (stmt != null)
-			stmt.close();
-		if (con != null)
-			con.close();
-		if (rs != null)
-			rs.close();
+		pool.freeConnection(con, stmt, rs);
 	}
 
 %>

@@ -1,5 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page contentType="text/html;charset=euc-kr" %>
+
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="javax.sql.DataSource" %>
 <%@ page import="java.sql.*" %>
+
 <html>
 <head> <title>JSPBoard</title>
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -37,8 +42,9 @@
 	int count = 0;
 	
 	try{
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		con = DriverManager.getConnection(url, id, pw);
+		Context ctx = new InitialContext();
+		DataSource ds = 
+				(DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
 		
 		String sql = "select * from tblboard where b_num=" + b_num;
 		stmt = con.createStatement();
