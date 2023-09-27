@@ -39,7 +39,7 @@ public class BoardDao {
 		Vector vector = new Vector();
 		
 		try {
-			con = ds.getConnection(); 
+			con = ds.getConnection();//DB접속 코드
 			stmt = con.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
@@ -61,5 +61,31 @@ public class BoardDao {
 			freeConnection();
 		}
 		return vector;
+	}
+	
+	//PostProc.jsp(글 쓰기 기능을 Bean으로 옮길 예정)
+	public void setBoard(Board board) {
+		String sql = "insert into tblboard(b_num," +
+				"b_name, b_email, b_homepage, b_subject, b_content, " +
+				"b_pass, b_count, b_ip, b_regdate, pos, depth) " +
+				"values(seq_b_num.nextVal, ?,?,?,?,?,?, 0, ?, sysdate, 0, 0)";
+	try {
+		stmt = con.prepareStatement(sql);
+		//Bean에서 뽑아내는 기능
+		stmt.setString(1, board.getB_name());
+		stmt.setString(2, board.getB_email());
+		stmt.setString(3, board.getB_homepage());
+		stmt.setString(4, board.getB_subject());
+		stmt.setString(5, board.getB_content());
+		stmt.setString(6, board.getB_pass());
+		stmt.setString(7, board.getB_ip());
+		stmt.executeUpdate();	
+	}
+	catch(Exception e) {
+		System.out.println("setBoard : " + e);
+	}
+	finally {
+		freeConnection();
+	}
 	}
 }

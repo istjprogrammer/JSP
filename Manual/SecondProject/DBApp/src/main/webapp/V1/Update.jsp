@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
 <%@ page import="java.sql.*" %>
-<%@ page import="dbcp.DBConnectionMgr" %>
 <html>
 <head> <title>JSPBoard</title>
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -18,12 +17,10 @@
 <body>
 <%
 	String b_num = request.getParameter("b_num");
-	//처음에 할 일은 글 번호를 받아오는 일이다.
 
 	Connection con = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	DBConnectionMgr pool = null;
 
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String id = "scott";
@@ -40,8 +37,7 @@
 	
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		pool = DBConnectionMgr.getInstance();
-		con = pool.getConnection();
+		con = DriverManager.getConnection(url, id, pw);
 		
 		String sql = "select * from tblboard where b_num=" + b_num;
 		stmt = con.createStatement();
@@ -60,12 +56,13 @@
 	}
 	catch(Exception e){ System.out.println("Update.jsp: " + e); }
 	finally{
-		pool.freeConnection(con, stmt, rs);
+		if(rs != null)	rs.close();
+		if(stmt != null) stmt.close();
+		if(con != null)	con.close();
 	}
 %>
 <center>
 <br><br>
-
 <table width=460 cellspacing=0 cellpadding=3>
   <tr>
    <td bgcolor=#FF9018  height=21 align=center class=m>수정하기</td>

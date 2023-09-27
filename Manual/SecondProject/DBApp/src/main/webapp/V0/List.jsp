@@ -35,41 +35,39 @@
 				<td> 날짜 </td>
 				<td> 조회수 </td>
 			</tr>
-		<%
-			Connection con = null;
-			Statement stmt = null;
-			ResultSet rs = null;
+	<%
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String id = "scott";
+		String pw = "1111";
+		
+		try{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			con = DriverManager.getConnection(url, id, pw);
 			
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String id = "scott";
-			String pw = "1111";
-			try{
-				Class.forName("oracle.jdbc.driver.OracleDriver");
-				con = DriverManager.getConnection(url, id, pw);
-				
-				String sql = "select b_num, b_subject, b_name, b_regdate, b_count from tblboard";
-				stmt = con.createStatement();
-				rs = stmt.executeQuery(sql);
-	
-				while(rs.next()){
-				
+			String sql = "select b_num, b_subject, b_name, b_regdate, b_count from tblboard";
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
 			
-		%>
-		<tr>
-			<td><%=rs.getInt("b_num")%></td>
-			<td><a href="Read.jsp?b_num=<%=rs.getInt("b_num")%>">
-				<%=rs.getString("b_subject")%></a></td>
-			<td><%=rs.getString("b_name")%></td>
-			<td><%=rs.getString("b_regdate")%></td>
-			<td><%=rs.getInt("b_count")%></td>
-		</tr>
-		<%			
-				}
+			while(rs.next()){
+	%>
+	<tr>
+		<td><%=rs.getInt("b_num")%></td>
+		<td><a href="Read.jsp?b_num=<%=rs.getInt("b_num")%>"><%=rs.getString("b_subject")%></a></td>
+		<td><%=rs.getString("b_name")%></td>
+		<td><%=rs.getString("b_regdate")%></td>
+		<td><%=rs.getInt("b_count")%></td>
+	</tr>
+	<%
 			}
-			catch(Exception e){
-				System.out.println("List.jsp: " + e);
-			}
-			finally{
+		}
+		catch(Exception e){
+			System.out.println("List.jsp: " + e);
+		}
+		finally{
 			if(rs != null)
 				rs.close();
 			
@@ -78,8 +76,8 @@
 			
 			if(con != null)
 				con.close();
-			}
-		%>
+		}
+	%>
 		</table>
 	</td>
 </tr>

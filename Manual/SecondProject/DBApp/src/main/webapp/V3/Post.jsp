@@ -1,9 +1,4 @@
-<%@ page contentType="text/html;charset=euc-kr" %>
-
-<%@ page import="javax.naming.InitialContext" %>
-<%@ page import="javax.naming.Context" %>
-<%@ page import="javax.sql.DataSource" %>
-<%@ page import="java.sql.*" %>
+<%@ page contentType="text/html; charset=EUC-KR" %>
 <html>
 <head><title>JSPBoard</title>
 <link href="style.css" rel="stylesheet" type="text/css">

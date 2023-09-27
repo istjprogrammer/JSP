@@ -1,10 +1,5 @@
-<%@ page contentType="text/html;charset=euc-kr" %>
-
-<%@ page import="javax.naming.InitialContext" %>
-<%@ page import="javax.naming.Context" %>
-<%@ page import="javax.sql.DataSource" %>
+<%@ page contentType="text/html; charset=EUC-KR"%>
 <%@ page import="java.sql.*" %>
-
 <html>
 <head> <title>JSPBoard</title>
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -22,7 +17,6 @@
 <body>
 <%
 	String b_num = request.getParameter("b_num");
-	//처음에 할 일은 글 번호를 받아오는 일이다.
 
 	Connection con = null;
 	Statement stmt = null;
@@ -42,9 +36,8 @@
 	int count = 0;
 	
 	try{
-		Context ctx = new InitialContext();
-		DataSource ds = 
-				(DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		con = DriverManager.getConnection(url, id, pw);
 		
 		String sql = "select * from tblboard where b_num=" + b_num;
 		stmt = con.createStatement();
@@ -70,7 +63,6 @@
 %>
 <center>
 <br><br>
-
 <table width=460 cellspacing=0 cellpadding=3>
   <tr>
    <td bgcolor=#FF9018  height=21 align=center class=m>수정하기</td>

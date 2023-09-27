@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=euc-kr" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="dbcp.DBConnectionMgr" %>
+<%@ page import="mybean.*" %>
+<%@ page import="java.util.*" %>
 <HTML>
 <link href="style.css" rel="stylesheet" type="text/css">
 <script>
@@ -14,6 +14,7 @@
 	}
 </script>
 <BODY>
+<jsp:useBean id="dao" class="mybean.BoardDao" />
 <center><br>
 <h2>JSP Board</h2>
 
@@ -37,36 +38,19 @@
 				<td> Á¶È¸¼ö </td>
 			</tr>
 	<%
-		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		DBConnectionMgr pool = null;
-		
-		try{
-			pool = DBConnectionMgr.getInstance();
-			con = pool.getConnection(); 
-			
-			String sql = "select b_num, b_subject, b_name, b_regdate, b_count from tblboard";
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
-			
-			while(rs.next()){
+		Vector vec = (Vector)dao.getBoardList();
+		for(int i=0; i<vec.size(); i++){
+			Board board = (Board)vec.get(i);
 	%>
 	<tr>
-		<td><%=rs.getInt("b_num")%></td>
-		<td><a href="Read.jsp?b_num=<%=rs.getInt("b_num")%>"><%=rs.getString("b_subject")%></a></td>
-		<td><%=rs.getString("b_name")%></td>
-		<td><%=rs.getString("b_regdate")%></td>
-		<td><%=rs.getInt("b_count")%></td>
+		<td><%=board.getB_num()%></td>
+		<td><a href="Read.jsp?b_num=<%=board.getB_num()%>">
+			<%=board.getB_subject()%></a></td>
+		<td><%=board.getB_name()%></td>
+		<td><%=board.getB_regdate()%></td>
+		<td><%=board.getB_count()%></td>
 	</tr>
 	<%
-			}
-		}
-		catch(Exception e){
-			System.out.println("List.jsp: " + e);
-		}
-		finally{
-			pool.freeConnection(con, stmt, rs);
 		}
 	%>
 		</table>
