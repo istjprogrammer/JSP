@@ -37,7 +37,7 @@
 				<td> 날짜 </td>
 				<td> 조회수 </td>
 			</tr>
-	<%
+	<%	
 		Vector vec = (Vector)dao.getBoardList();
 		for(int i=0; i<vec.size(); i++){
 			Board board = (Board)vec.get(i);

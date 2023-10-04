@@ -34,8 +34,20 @@ public class BoardDao {
 	}
 	
 	// List.jsp, Update.jsp
-	public List getBoardList() {
-		String sql = "select b_num, b_subject, b_name, b_regdate, b_count from tblboard";
+	public List getBoardList(String keyField, String keyWord) {
+		String sql = null;
+		//검색어를 받아오는 과정
+		if(keyWord==null || keyWord.isEmpty()) {		
+			sql = "select b_num, b_subject, b_name, b_regdate, "
+					+ " b_count from tblboard order by b_num desc";
+		}
+		else {
+			sql = "select b_num, b_subject, b_name, b_regdate, "
+					+ "b_count from tblboard where "  + keyField +
+					 	" like '%" + keyWord + 
+					 	"%' order by b_num desc";
+		}
+
 		Vector vector = new Vector();
 		
 		try {
@@ -55,7 +67,7 @@ public class BoardDao {
 			}
 		}
 		catch(Exception e) {
-			System.out.println("List.jsp: " + e);
+			System.out.println("getBoardList : " + e);
 		}
 		finally {
 			freeConnection();
@@ -63,7 +75,18 @@ public class BoardDao {
 		return vector;
 	}
 	
-	// PostProc.jsp
+	public void updatePos(Connection con) {
+		try {
+		String sql = "update tblBoard set pos = pos + 1";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		}
+		catch(Exception err) {
+			System.out.println("updatePos : " + err);
+		}
+	}
+	
+	// PostProc.jsp, ReplyProc.jsp
 	public void setBoard(Board board) {
 		String sql = "insert into tblboard(b_num," +
 				"b_name, b_email, b_homepage, b_subject, b_content, " +
@@ -71,6 +94,9 @@ public class BoardDao {
 				"values(seq_b_num.nextVal, ?,?,?,?,?,?, 0, ?, sysdate, 0, 0)";
 		try {
 			con = ds.getConnection(); 
+			
+			updatePos(con);
+			
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, board.getB_name());
 			stmt.setString(2, board.getB_email());
@@ -89,7 +115,7 @@ public class BoardDao {
 		}
 	}
 	
-	// Read.jsp, Update.jsp
+	// Read.jsp, Update.jsp, reply.jsp
 	public Board getBoard(int b_num){
 		String sql;
 		Board result = new Board();
@@ -162,8 +188,8 @@ public class BoardDao {
 		}
 		finally{ freeConnection(); }
 	}
+	
+	public void replyBoard(Board board) {
+		
+	}
 }
-
-
-
-
