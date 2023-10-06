@@ -1,16 +1,16 @@
-<%@ page contentType="text/html;charset=euc-kr"%>
+<%@ page contentType="text/html;charset=utf-8"%>
 <%@ page import="mybean.*"%>
 <%@ page import="java.util.*"%>
 
 <%!
-	int totalRecord = 0;//ÃÑ ±ÛÀÇ °¹¼ö
-	int numPerPage = 5;//ÇÑ ÆäÀÌÁö´ç Ãâ·ÂµÉ ÆäÀÌÁöÀÇ °¹¼ö
-	int totalPage = 0;//ÀüÃ¼ ÆäÀÌÁö °¹¼ö
-	int nowPage = 0;//ÇöÀçÀÇ ÆäÀÌÁö¸¦ ³ªÅ¸³»´Â º¯¼ö
-	int beginPerPage = 0;//°¢°¢ÀÇ ÆäÀÌÁö°¡ ¸î ÆäÀÌÁö¿¡¼­ ½ÃÀÛÇÏ´ÂÁö ¾Ë¾Æ¾ß µÇ±â ¶§¹®¿¡
-	int pagePerBlock = 2;// ¸î ÆäÀÌÁö¸¦ ÇÑ ºí·°À¸·Î ÇÒ °ÍÀÎÁö	
-	int totalBlock = 0;// ÀüÃ¼ ºí·° ¼ö
-	int nowBlock = 0;// ÇöÀç ºí·°
+	int totalRecord = 0;//ì´ ê¸€ì˜ ê°¯ìˆ˜
+	int numPerPage = 20;//í•œ í˜ì´ì§€ë‹¹ ì¶œë ¥ë  í˜ì´ì§€ì˜ ê°¯ìˆ˜
+	int totalPage = 0;//ì „ì²´ í˜ì´ì§€ ê°¯ìˆ˜
+	int nowPage = 0;//í˜„ì¬ì˜ í˜ì´ì§€ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë³€ìˆ˜
+	int beginPerPage = 0;//ê°ê°ì˜ í˜ì´ì§€ê°€ ëª‡ í˜ì´ì§€ì—ì„œ ì‹œì‘í•˜ëŠ”ì§€ ì•Œì•„ì•¼ ë˜ê¸° ë•Œë¬¸ì—
+	int pagePerBlock = 2;// ëª‡ í˜ì´ì§€ë¥¼ í•œ ë¸”ëŸ­ìœ¼ë¡œ í•  ê²ƒì¸ì§€	
+	int totalBlock = 0;// ì „ì²´ ë¸”ëŸ­ ìˆ˜
+	int nowBlock = 0;// í˜„ì¬ ë¸”ëŸ­
 	
 %>
 <HTML>
@@ -18,7 +18,7 @@
 <script>
 	function check() {
 		if (document.search.keyWord.value == "") {
-			alert("°Ë»ö¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+			alert("ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 			document.search.keyWord.focus();
 			return;
 		}
@@ -34,15 +34,15 @@
 	
 		Vector vec = (Vector) dao.getBoardList(keyField, keyWord);
 	
-		totalRecord = vec.size();//ÃÑ °Ô½Ã±ÛÀÇ °¹¼ö
-		totalPage = (int) Math.ceil((double) totalRecord / numPerPage);//ÃÑ ÆäÀÌÁöÀÇ °¹¼ö, ½Ç¼öÇüÀ¸·Î Çü º¯È¯À» ÇÏ´Â ÀÌÀ¯´Â Á¤¼öÇüÀ¸·Î ÇÏ¸é ¹«Á¶°Ç ¹ö¸²Ã³¸®µÇ±â ¶§¹®ÀÌ´Ù.
-		//Math.ceilÀº ¹İ¿Ã¸²À» ÇØÁÖ´Â API
+		totalRecord = vec.size();//ì´ ê²Œì‹œê¸€ì˜ ê°¯ìˆ˜
+		totalPage = (int) Math.ceil((double) totalRecord / numPerPage);//ì´ í˜ì´ì§€ì˜ ê°¯ìˆ˜, ì‹¤ìˆ˜í˜•ìœ¼ë¡œ í˜• ë³€í™˜ì„ í•˜ëŠ” ì´ìœ ëŠ” ì •ìˆ˜í˜•ìœ¼ë¡œ í•˜ë©´ ë¬´ì¡°ê±´ ë²„ë¦¼ì²˜ë¦¬ë˜ê¸° ë•Œë¬¸ì´ë‹¤.
+		//Math.ceilì€ ë°˜ì˜¬ë¦¼ì„ í•´ì£¼ëŠ” API
 		
 		if(request.getParameter("nowPage") != null)
-			nowPage = Integer.parseInt(request.getParameter("nowPage"));//¹®ÀÚÇüÀ» ¼ıÀÚ·Î ¹Ù²ãÁÖ´Â ¸Ş¼­µå
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));//ë¬¸ìí˜•ì„ ìˆ«ìë¡œ ë°”ê¿”ì£¼ëŠ” ë©”ì„œë“œ
 		
 		if(request.getParameter("nowBlock") != null)
-			nowBlock = Integer.parseInt(request.getParameter("nowBlock"));//¹®ÀÚÇüÀ» ¼ıÀÚ·Î ¹Ù²ãÁÖ´Â ¸Ş¼­µå
+			nowBlock = Integer.parseInt(request.getParameter("nowBlock"));//ë¬¸ìí˜•ì„ ìˆ«ìë¡œ ë°”ê¿”ì£¼ëŠ” ë©”ì„œë“œ
 			
 		beginPerPage = nowPage * numPerPage;
 		totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
@@ -65,11 +65,11 @@
 				<td align=center colspan=2>
 					<table border=0 width=100% cellpadding=2 cellspacing=0>
 						<tr align=center bgcolor=#D0D0D0 height=120%>
-							<td>¹øÈ£</td>
-							<td>Á¦¸ñ</td>
-							<td>ÀÌ¸§</td>
-							<td>³¯Â¥</td>
-							<td>Á¶È¸¼ö</td>
+							<td>ë²ˆí˜¸</td>
+							<td>ì œëª©</td>
+							<td>ì´ë¦„</td>
+							<td>ë‚ ì§œ</td>
+							<td>ì¡°íšŒìˆ˜</td>
 						</tr>
 						<%
 						
@@ -80,19 +80,31 @@
 							
 							Board board = (Board) vec.get(i);
 						%>
+						
+						<!-- ë‹µê¸€ ë“¤ì—¬ì“°ê¸° ê¸°ëŠ¥ êµ¬í˜„ -->
 						<tr>
 							<td><%=board.getB_num()%></td>
-							<td><a href="Read.jsp?b_num=<%=board.getB_num()%>"> <%=board.getB_subject()%></a></td>
+							<td>
+								<%=dao.useDepth(board.getDepth()) %>
+								<%
+									if(board.getDepth() > 0){
+								%>
+									<img src="../image/re.gif" />
+								<%
+									}
+								%>
+								<a href="Read.jsp?b_num=<%=board.getB_num()%>"> 
+								<%=board.getB_subject()%></a></td>
 							<td><%=board.getB_name()%></td>
 							<td><%=board.getB_regdate()%></td>
 							<td><%=board.getB_count()%></td>
 						</tr>
 						<%
-						}// for¹®ÀÌ ´İÈ÷´Â ±¸°£
-					}//if ¹®ÀÌ ´İÈ÷´Â ±¸°£
+						}// forë¬¸ì´ ë‹«íˆëŠ” êµ¬ê°„
+					}//if ë¬¸ì´ ë‹«íˆëŠ” êµ¬ê°„
 						else{
 						%>
-						<b>µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.</b>
+						<b>ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.</b>
 						<%
 						}
 						%>
@@ -106,7 +118,7 @@
 			<tr>
 				<td align="left">Go to Page 
 					<% if(nowBlock>0) {%>
-					<a href = "List.jsp?nowPage=<%=pagePerBlock * (nowBlock-1)%>&nowBlock=<%=nowBlock-1%>">ÀÌÀü<%=pagePerBlock%> °³ </a>:::&nbsp;&nbsp;&nbsp;
+					<a href = "List.jsp?nowPage=<%=pagePerBlock * (nowBlock-1)%>&nowBlock=<%=nowBlock-1%>">ì´ì „<%=pagePerBlock%> ê°œ </a>:::&nbsp;&nbsp;&nbsp;
 					<% } %>
 					<%
 						for(int i=0; i<pagePerBlock; i++){
@@ -125,11 +137,11 @@
 					&nbsp;&nbsp;&nbsp;
 					:::
 					<% if(totalBlock > nowBlock + 1){ %>
-					<a href = "List.jsp?nowPage=<%=pagePerBlock * (nowBlock+1)%>&nowBlock=<%=nowBlock+1%>">´ÙÀ½<%=pagePerBlock%>°³</a>
+					<a href = "List.jsp?nowPage=<%=pagePerBlock * (nowBlock+1)%>&nowBlock=<%=nowBlock+1%>">ë‹¤ìŒ<%=pagePerBlock%>ê°œ</a>
 					<% } %>	
 				</td>
-				<td align=right><a href="Post.jsp">[±Û¾²±â]</a> 
-				<a href="javascript:list()">[Ã³À½À¸·Î]</a></td>
+				<td align=right><a href="Post.jsp">[ê¸€ì“°ê¸°]</a> 
+				<a href="javascript:list()">[ì²˜ìŒìœ¼ë¡œ]</a></td>
 			</tr>
 		</table>
 		
@@ -139,14 +151,14 @@
 				<tr>
 					<td align=center valign=bottom><select name="keyField"
 						size="1">
-							<option value="b_name">ÀÌ¸§
-							<option value="b_subject">Á¦¸ñ
-							<option value="b_content">³»¿ë
+							<option value="b_name">ì´ë¦„
+							<option value="b_subject">ì œëª©
+							<option value="b_content">ë‚´ìš©
 					</select> 
 					
 					
 						<input type="text" size="16" name="keyWord"> <input
-						type="button" value="Ã£±â" onClick="check()"> <input
+						type="button" value="ì°¾ê¸°" onClick="check()"> <input
 						type="hidden" name="page" value="0"></td>
 				</tr>
 			</table>

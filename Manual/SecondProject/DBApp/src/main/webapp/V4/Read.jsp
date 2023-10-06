@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="dbcp.DBConnectionMgr" %>
 <html>
@@ -50,25 +50,25 @@
 <br><br>
 <table align=center width=70% border=0 cellspacing=3 cellpadding=0>
  <tr>
-  <td bgcolor=9CA2EE height=25 align=center class=m>±ÛÀÐ±â</td>
+  <td bgcolor=9CA2EE height=25 align=center class=m>ê¸€ì½ê¸°</td>
  </tr>
  <tr>
   <td colspan=2>
    <table border=0 cellpadding=3 cellspacing=0 width=100%> 
     <tr> 
-	 <td align=center bgcolor=#dddddd width=10%> ÀÌ ¸§ </td>
+	 <td align=center bgcolor=#dddddd width=10%> ì´ ë¦„ </td>
 	 <td bgcolor=#ffffe8><%=name%></td>
-	 <td align=center bgcolor=#dddddd width=10%> µî·Ï³¯Â¥ </td>
+	 <td align=center bgcolor=#dddddd width=10%> ë“±ë¡ë‚ ì§œ </td>
 	 <td bgcolor=#ffffe8><%=regdate%></td>
 	</tr>
     <tr>
-	 <td align=center bgcolor=#dddddd width=10%> ¸Þ ÀÏ </td>
+	 <td align=center bgcolor=#dddddd width=10%> ë©” ì¼ </td>
 	 <td bgcolor=#ffffe8 ><%=email%></td> 
-	 <td align=center bgcolor=#dddddd width=10%> È¨ÆäÀÌÁö </td>
+	 <td align=center bgcolor=#dddddd width=10%> í™ˆíŽ˜ì´ì§€ </td>
 	 <td bgcolor=#ffffe8 ><a href="http://<%=home%>" target="_new">http://<%=home%></a></td> 
 	</tr>
     <tr> 
-     <td align=center bgcolor=#dddddd> Á¦ ¸ñ</td>
+     <td align=center bgcolor=#dddddd> ì œ ëª©</td>
      <td bgcolor=#ffffe8 colspan=3><%=subject%></td>
    </tr>
    <tr> 
@@ -76,7 +76,7 @@
    </tr>
    <tr>
     <td colspan=4 align=right>
-     <%=ip%>·Î ºÎÅÍ ±ÛÀ» ³²±â¼Ì½À´Ï´Ù./  Á¶È¸¼ö : <%=count%> 
+     <%=ip%>ë¡œ ë¶€í„° ê¸€ì„ ë‚¨ê¸°ì…¨ìŠµë‹ˆë‹¤./  ì¡°íšŒìˆ˜ : <%=count%> 
     </td>
    </tr>
    </table>
@@ -85,10 +85,10 @@
  <tr>
   <td align=center colspan=2> 
 	<hr size=1>
-	[ <a href="javascript:list()">¸ñ ·Ï</a> | 
-	<a href ="Reply.jsp?b_num=<%=b_num%>">´äº¯</a> | 
-	<a href="Update.jsp?b_num=<%=b_num%>">¼ö Á¤</a> |
-	<a href="Delete.jsp?b_num=<%=b_num%>">»è Á¦</a> ]<br>
+	[ <a href="javascript:list()">ëª© ë¡</a> | 
+	<a href ="Reply.jsp?b_num=<%=b_num%>">ë‹µë³€</a> | 
+	<a href="Update.jsp?b_num=<%=b_num%>">ìˆ˜ ì •</a> |
+	<a href="Delete.jsp?b_num=<%=b_num%>">ì‚­ ì œ</a> ]<br>
   </td>
  </tr>
 </table>

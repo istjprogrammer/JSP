@@ -25,8 +25,9 @@
 </table>
 <br>
 <table width=80% cellspacing=0 cellpadding=3 align=center>
-<form name=post method=post action="replyProc.jsp" >
+<form name=post method=post action="ReplyProc.jsp" >
 <input type="hidden" name="b_ip" value="<%=request.getRemoteAddr()%>">
+<input type="hidden" name="b_num" value="<%=b_num%>"> <!-- 글 번호를 넘겨주는 라인 -->
  <tr>
   <td align=center>
    <table border=0 width=100% align=center>
