@@ -18,7 +18,7 @@
 	이름 : ${test.name}<br>
 	가격 : ${test.price}<br>
 	<hr>
-	<a href="/ELApp/eltest.action?name=John">서블릿에게 요청</a>
+	<a href="/ELJSTLApp/eltest.action?name=John">서블릿에게 요청</a>
 	
 		
 </body>
