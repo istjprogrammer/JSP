@@ -34,13 +34,23 @@
 
 
 	<servlet>
-		<servlet-name>eltest</servlet-name>
-		<servlet-class>myservlet.ELTestServlet</servlet-class>
+		<servlet-name>depart</servlet-name>
+		<servlet-class>controller.DepartmentServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>eltest</servlet-name>
-		<url-pattern>/eltest.action</url-pattern>
+		<servlet-name>depart</servlet-name>
+		<url-pattern>/depart</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>bookshop</servlet-name>
+		<servlet-class>controller.BookController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>bookshop</servlet-name>
+		<url-pattern>/bookshop</url-pattern>
 	</servlet-mapping>
 </web-app>
 
