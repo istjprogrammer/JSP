@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+	<h1>회원 가입</h1>
+	<form method="post" action="/MVCApp/mem">
+		<input type="hidden" name="command" value="CONFIRM"/>
+		아이디 : <input type = "text" name = "id"/><br><br>
+		패스워드 : <input type = "password" name = "pw"/><br><br>
+		이메일 : <input type = "email" name = "email"/><br><br>
+		<input type="submit" value="가입"/>
+	</form>
+</body>
+</html>

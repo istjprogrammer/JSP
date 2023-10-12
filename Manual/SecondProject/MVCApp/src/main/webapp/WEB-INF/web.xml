@@ -52,9 +52,24 @@
 		<servlet-name>bookshop</servlet-name>
 		<url-pattern>/bookshop</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>mem</servlet-name>
+		<servlet-class>controller.MemberController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>mem</servlet-name>
+		<url-pattern>/mem</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>front</servlet-name>
+		<servlet-class>controller.FrontController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>front</servlet-name>
+		<url-pattern>/front</url-pattern>
+	</servlet-mapping>
 </web-app>
-
-
-
-
-

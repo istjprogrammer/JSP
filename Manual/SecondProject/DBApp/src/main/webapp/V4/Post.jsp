@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <html>
-<head><title>JSPBoard</title>
+<head><title>COMMIT</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
