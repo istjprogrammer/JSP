@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	let httpRequest = null;
+	
+	function fnSubmit(){
+		httpRequest = new XMLHttpRequest();
+		let name = document.getElementById("name").value;
+		
+		httpRequest.open("GET", "basic01.jsp?name=" + name, true);
+		httpRequest.onreadystatechange = fnCallback; 
+		httpRequest.send(null);
+	}
+	
+	function fnCallback(){	
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				let data = httpRequest.responseText;
+				let div = document.getElementById("display");
+				div.innerHTML = data;
+			}
+			else{
+				alert("무언가 잘못되었음 : " + httpRequest.status);
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<input type="text" name="name" id="name"/>
+	<input type="button" value="전송" onclick="fnSubmit()"/>
+	<hr>
+	<div id="display"></div>
+</body>
+</html>

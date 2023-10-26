@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<books>
+	<book>
+		<title><![CDATA[XML &amp; 자바]]></title>
+		<publisher>자바 출판사</publisher>
+	</book>
+</books>

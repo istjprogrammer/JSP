@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<students>
+    	
+    <student>
+        		
+        <name>홍길동</name>
+        		
+        <age>18</age>
+        	
+        <address>서울시 강남구</address>
+    </student>
+    	
+    <student>
+        		
+        <name>임꺽정</name>
+        		
+        <age>20</age>
+        	
+        <address>서울시 강남구</address>
+    </student>
+    
+</students>

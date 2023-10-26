@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+	<student>
+		<name>홍길동</name>
+		<age>18</age>
+	</student>
+	<student>
+		<name>임꺽정</name>
+		<age>20</age>
+	</student>
+</students>

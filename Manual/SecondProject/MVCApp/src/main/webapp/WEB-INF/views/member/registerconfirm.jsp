@@ -11,7 +11,7 @@
 	
 	<ul>
 		<li>아이디 : ${member.id} </li>
-		<li>패스워드 : ${member.pw}</li>
+		<li>패스워드 : ${member.pw} </li>
 		<li>이메일 : ${member.email} </li>
 	</ul>
 	<form method="post" action="/MVCApp/mem">

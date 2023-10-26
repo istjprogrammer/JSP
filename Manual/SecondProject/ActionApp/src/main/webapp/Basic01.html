@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+    let httpRequest = null;
+
+    function fnSubmit(){
+        httpRequest = new XMLHttpRequest();
+        // 객체 생성
+        let name = document.getElementById("name").value;
+
+        httpRequest.open("GET" , "Basic01.jsp?name=" + name, true);
+        // 서버와 연결하기 위한 함수
+        // 요청방식 , 연결파일,
+        httpRequest.onreadystatechange = fnCallback;
+        // 서버와 연결이 되면 어떤일을 할 것인지 동작할 것이기 때문에 함수를 적어줌
+        httpRequest.send(null);
+        // 실제로 보내는 함수
+    }
+
+    function fnCallback(){
+        if(httpRequest.readyState == 4){
+            // 서버로부터 데이터를 전부 받은 상태
+            if(httpRequest.status == 200){
+                // 200 : OK
+                let data = httpRequest.responseText;
+                let div = document.getElementById("display");
+                div.innerHTML= data;
+
+            }
+            else{
+                alert("무언가 잘못 되었음 : " + httpRequest.status)
+            }
+        }
+    }
+</script>
+</head>
+<body>
+    <input type="text" name="name" id="name" />
+    <input type="button" value="전송" onclick="fnSubmit()"/>
+    <hr>
+    <div id ="display"></div>
+</body>
+</html>

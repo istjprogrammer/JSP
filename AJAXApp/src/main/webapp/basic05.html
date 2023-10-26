@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	let httpRequest = null;
+	
+	function fnSubmit(){
+		httpRequest = new XMLHttpRequest();
+		
+		httpRequest.open("GET", "basic05.jsp", true);
+		httpRequest.onreadystatechange = fnCallback; 
+		httpRequest.send(null);
+	}
+	
+	function fnCallback(){	
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				let txtDoc = eval("(" + httpRequest.responseText + ")");
+				
+				alert(txtDoc[0].no + ", " + txtDoc[0].name + ", "
+					+ txtDoc[0].job);
+			}
+			else{
+				alert("무언가 잘못되었음 : " + httpRequest.status);
+			}
+		}
+	}
+	
+	window.onload = function(){
+		fnSubmit();
+	}	
+</script>
+</head>
+<body>
+	<h1>서버로부터 JSON타입의 데이터(배열)를 받는 예제</h1>
+</body>
+</html>

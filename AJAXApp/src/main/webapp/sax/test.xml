@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+	<student>
+		<name age="18" addr="서울">홍길동</name>
+		<phone>111-1111</phone>
+	</student>
+	<student>
+		<name age="20" addr="경기">임꺽정</name>
+		<phone>222-2222</phone>
+	</student>
+</students>

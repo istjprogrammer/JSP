@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE booklist SYSTEM "test2.dtd">
+
+<booklist>
+	<book>
+		<title>노인과 바다</title>
+		<author>헤밍웨이</author>
+		<author>순자</author>
+		<pub>출판사</pub>
+		<coverImg />	
+	</book>
+</booklist>

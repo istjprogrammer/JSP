@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	let httpRequest = null;
+	
+	function fnSubmit(){
+		httpRequest = new XMLHttpRequest();
+				
+		httpRequest.open("GET", "basic03.jsp", true);
+		httpRequest.onreadystatechange = fnCallback; 
+		httpRequest.send(null);
+	}
+	
+	function fnCallback(){	
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				let xmlDoc = httpRequest.responseXML;
+				let books = xmlDoc.getElementsByTagName("book");
+				let msg = "책 권수 : " + books.length + "권<br>";
+				
+				for(let i=0; i<books.length; i++){
+					let book = books.item(i);
+					let title = book.getElementsByTagName("title")
+									.item(0).firstChild.nodeValue;
+					let author = book.getElementsByTagName("author")
+									.item(0).firstChild.nodeValue;
+					
+					msg += title + "(" + author + ")<br>";
+				}
+				
+				document.getElementById("bookList").innerHTML = msg;
+			}
+			else{
+				alert("무언가 잘못되었음 : " + httpRequest.status);
+			}
+		}
+	}
+	
+	window.onload = function(){
+		fnSubmit();
+	}
+</script>
+</head>
+<body>
+	<h2>책 정보</h2>
+	<div id="bookList"></div>
+</body>
+</html>
